@@ -2,3 +2,21 @@
 li[data-todo-item-completed="true"] span {
 	text-decoration: line-through;
 }
+
+.loginPanel {
+    width: 400px !important;
+}
+
+/* Adjust width for screens smaller than or equal to 375px */
+@media (max-width: 375px) {
+    .loginPanel {
+        width: 300px !important;
+    }
+}
+
+.sapMInput {
+    height: 30px !important; /* Adjust the height as per your requirement */
+    padding: 0; /* Remove padding to ensure consistency */
+    border-radius: 4px; /* Optional: Add a border radius */
+}
+

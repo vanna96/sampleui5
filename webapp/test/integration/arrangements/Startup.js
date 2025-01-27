@@ -3,12 +3,12 @@ sap.ui.define([
 ], (Opa5) => {
 	"use strict";
 
-	return Opa5.extend("sap.ui.demo.todo.test.integration.arrangements.Startup", {
+	return Opa5.extend("my.app.test.integration.arrangements.Startup", {
 
 		iStartMyApp() {
 			this.iStartMyUIComponent({
 				componentConfig: {
-					name: "sap.ui.demo.todo",
+					name: "my.app",
 					async: true,
 					manifest: true
 				}

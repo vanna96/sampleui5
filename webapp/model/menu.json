@@ -1,0 +1,18 @@
+{
+    "menuItems": [
+        { 
+            "title": "Dashboard", 
+            "icon": "sap-icon://home",
+            "key": "dashboard",
+            "subItems": [] 
+        },
+        { 
+            "title": "Master Data", 
+            "icon": "sap-icon://activity-2",
+            "key": "",
+            "subItems": [
+                { "title": "Category", "key": "category", "icon": "sap-icon://activity-2"}
+            ] 
+        }
+    ]
+}

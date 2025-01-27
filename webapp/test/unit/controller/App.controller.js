@@ -1,7 +1,7 @@
 /* global QUnit, sinon */
 
 sap.ui.define([
-	"sap/ui/demo/todo/controller/App.controller",
+	"my/app/controller/App.controller",
 	"sap/ui/model/json/JSONModel"
 ], (AppController, JSONModel) => {
 	"use strict";

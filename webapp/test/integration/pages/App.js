@@ -9,7 +9,7 @@ sap.ui.require([
 ], (Device, Opa5, AggregationLengthEquals, PropertyStrictEquals, Properties, EnterText, Press) => {
 	"use strict";
 
-	const sViewName = "sap.ui.demo.todo.view.App";
+	const sViewName = "my.app.view.App";
 	const sAddToItemInputId = "addTodoItemInput";
 	const sSearchTodoItemsInputId = "searchTodoItemsInput";
 	const sItemListId = "todoList";

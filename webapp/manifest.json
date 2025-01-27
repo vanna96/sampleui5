@@ -1,7 +1,7 @@
 {
 	"_version": "1.61.0",
 	"sap.app": {
-		"id": "sap.ui.demo.todo",
+		"id": "my.app",
 		"type": "application"
 	},
 	"sap.ui5": {
@@ -10,11 +10,12 @@
 			"libs": {
 				"sap.ui.core": {},
 				"sap.m": {},
-				"sap.f": {}
+				"sap.f": {},
+				"sap.tnt": {}
 			}
 		},
 		"rootView": {
-			"viewName": "sap.ui.demo.todo.view.App",
+			"viewName": "my.app.view.App",
 			"type": "XML",
 			"id": "app"
 		},
@@ -22,13 +23,13 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "sap.ui.demo.todo.i18n.i18n",
+					"bundleName": "my.app.i18n.i18n",
 					"async": true
 				}
 			},
 			"": {
 				"type": "sap.ui.model.json.JSONModel",
-				"uri": "model/todoitems.json"
+				"uri": "model/menu.json"
 			}
 		},
 		"resources": {
@@ -37,6 +38,55 @@
 					"uri": "css/styles.css"
 				}
 			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewPath": "my.app.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"viewType": "XML",
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "dashboard",
+					"target": "dashboard"
+				},
+				{
+					"pattern": "login",
+					"name": "login",
+					"target": "login"
+				},
+				{
+					"pattern": "category",
+					"name": "category",
+					"target": "category"
+				}
+			],
+			"targets": {
+				"main": {
+					"viewName": "Main",
+					"viewType": "XML",
+					"controlAggregation": "pages"
+				}, 
+				"dashboard": {
+					"viewName": "Dashboard",
+					"controlId": "appContainer", 
+					"parent": "main",
+					"viewLevel": 1
+				},
+				"category": {
+					"viewName": "master_data.Category",
+					"controlId": "appContainer", 
+					"parent": "main",
+					"viewLevel": 1
+				},
+				"login": {
+					"viewName": "Authentication.Login"
+				}
+			}
 		}
 	}
 }

@@ -3,7 +3,7 @@ sap.ui.define(function () {
 	return {
 		name: "QUnit test suite for Todo App",
 		defaults: {
-			page: "ui5://test-resources/sap/ui/demo/todo/Test.qunit.html?testsuite={suite}&test={name}",
+			page: "ui5://test-resources/my/app/Test.qunit.html?testsuite={suite}&test={name}",
 			qunit: {
 				version: 2
 			},
@@ -15,12 +15,12 @@ sap.ui.define(function () {
 				theme: "sap_horizon"
 			},
 			coverage: {
-				only: "sap/ui/demo/todo/",
-				never: "test-resources/sap/ui/demo/todo/"
+				only: "my/app/",
+				never: "test-resources/my/app/"
 			},
 			loader: {
 				paths: {
-					"sap/ui/demo/todo": "../"
+					"my/app": "../"
 				}
 			}
 		},

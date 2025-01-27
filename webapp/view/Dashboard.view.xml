@@ -1,0 +1,9 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="my.app.controller.Dashboard">
+    <VBox>
+        <Text text="Welcome to the Dashboard!" />
+        <!-- Add more content here for your Dashboard -->
+    </VBox>
+</mvc:View>
