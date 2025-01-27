@@ -13,6 +13,7 @@ sap.ui.define([
 
 	return Controller.extend("my.app.controller.Authentication.Login", {
 		onInit: function () {
+            document.title = "Login";
 			this.oModel = new sap.ui.model.json.JSONModel({
 				loginButton: "Login"
 			});  

@@ -6,6 +6,7 @@ sap.ui.define([
     return Controller.extend("my.app.controller.Dashboard", {
 
         onInit: function () { 
+            document.title = "Dashboard";
             console.log("Dashboard controller loaded");
         }, 
     });

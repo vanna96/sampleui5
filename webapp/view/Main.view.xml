@@ -56,6 +56,7 @@
 								templateShareable: false
 							}">
 							<tnt:NavigationListItem
+								icon="{menu>icon}"
 								text="{menu>title}"
 								key="{menu>key}" />
 						</tnt:NavigationListItem>
