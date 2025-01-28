@@ -5,7 +5,7 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"
 	xmlns:tnt="sap.tnt"
-	xmlns:layout="sap.ui.layout" 
+	xmlns:layout="sap.ui.layout"
 	xmlns:f="sap.f"
     height="100%">
 	<VBox>
@@ -20,8 +20,8 @@
 					<OverflowToolbarLayoutData priority="NeverOverflow"/>
 				</layoutData>
 			</Image>
-		
-			<ToolbarSpacer />   
+
+			<ToolbarSpacer />
 			<Button icon="sap-icon://bell" type="Transparent" tooltip="Notification">
 				<layoutData>
 					<OverflowToolbarLayoutData priority="NeverOverflow"/>
@@ -39,13 +39,13 @@
         <SplitApp id="splitAppControl" >
             <masterPages>
                 <Page id="masterPage" showHeader="false">
-					<tnt:NavigationList 
-						id="navigationList" 
+					<tnt:NavigationList
+						id="navigationList"
 						class="sapUiSmallMarginBottom"
-						itemSelect="onItemSelect" 
-						items="{menu>/menuItems}" 
+						itemSelect="onItemSelect"
+						items="{menu>/menuItems}"
 						selectedKey="{menu>/selectedKey}"
-					>		
+					>
 						<tnt:NavigationListItem
 							text="{menu>title}"
 							icon="{menu>icon}"
@@ -66,8 +66,8 @@
             <detailPages>
                 <Page id="detailPage" showHeader="false">
 					<App id="appContainer"/>
-				</Page> 
+				</Page>
             </detailPages>
         </SplitApp>
-	</VBox>	
+	</VBox>
 </mvc:View>
