@@ -1,7 +1,7 @@
 <mvc:View
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    controllerName="my.app.controller.Dashboard">
+    controllerName="my.app.controller.Category">
     <VBox>
         <Text text="Welcome to the Category!" />
         <!-- Add more content here for your Dashboard -->

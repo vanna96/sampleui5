@@ -1,11 +1,14 @@
 sap.ui.define([
 	"sap/ui/Device",
-	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator",
-	"sap/ui/model/json/JSONModel",
-	"sap/base/strings/formatMessage"
-], (Device, Controller) => {
+	"sap/ui/core/mvc/Controller", 
+	"sap/ui/core/Fragment",
+	"my/app/util/Cookie",
+], (
+	Device, 
+	Controller, 
+	Fragment,
+	Cookie
+) => {
 	"use strict";
 
 	return Controller.extend("my.app.controller.Main", {
@@ -62,6 +65,31 @@ sap.ui.define([
 			const sKey = oEvent.getParameter("item").getKey();
 			const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo(sKey);
+		},
+
+		onMyAccount: function () {
+            const oView = this.getView(),
+                oButton = oView.byId("button");
+
+            if (!this._oMenuFragment) {
+                this._oMenuFragment = Fragment.load({
+                    id: oView.getId(),
+                    name: "my.app.view.layouts.Menu",
+                    controller: this
+                }).then(function(oMenu) {
+                    oMenu.openBy(oButton);
+                    this._oMenuFragment = oMenu;
+                    return this._oMenuFragment;
+                }.bind(this));
+            } else {
+                this._oMenuFragment.openBy(oButton);
+            }
+        },
+
+		onLogoutPress: function () {
+			Cookie.deleteCookie("B1SESSION");
+			const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("login");
 		}
 	});
 

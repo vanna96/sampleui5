@@ -78,7 +78,7 @@
 					"viewLevel": 1
 				},
 				"category": {
-					"viewName": "master_data.Category",
+					"viewName": "master_data.category.list",
 					"controlId": "appContainer", 
 					"parent": "main",
 					"viewLevel": 1

@@ -30,7 +30,7 @@
 			<tnt:ToolHeaderUtilitySeparator/>
 
 			<ToolbarSpacer width="1.125rem"/>
-			<Avatar src="" displaySize="XS" press=".onMyAccountPress" tooltip="Profile" id="button">
+			<Avatar src="" displaySize="XS" press=".onMyAccount" tooltip="Profile" id="button">
 				<layoutData>
 					<OverflowToolbarLayoutData priority="NeverOverflow"/>
 				</layoutData>
