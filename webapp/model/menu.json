@@ -14,8 +14,7 @@
                 { "title": "Branch", "key": "branch"},
                 { "title": "Category", "key": "category"},
                 { "title": "Item", "key": "item"},
-                { "title": "Warehouse", "key": "warehouse"},
-                { "title": "Warehouse", "key": "warehouse"},
+                { "title": "Warehouse", "key": "warehouse"}, 
                 { "title": "Unit of Messure", "key": "unit_of_messure"},
                 { "title": "Tax", "key": "tax"},
                 { "title": "User", "key": "user"}

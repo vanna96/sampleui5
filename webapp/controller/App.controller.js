@@ -10,7 +10,7 @@ sap.ui.define([
 
 	return Controller.extend("my.app.controller.App", {
 		onInit: function () {  
-			
+			document.title = "App";
         }		
 	});
 

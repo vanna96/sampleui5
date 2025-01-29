@@ -22,7 +22,7 @@
 			</Image>
 
 			<ToolbarSpacer />
-			<Button icon="sap-icon://bell" type="Transparent" tooltip="Notification">
+			<Button icon="sap-icon://bell" type="Transparent" tooltip="Notification" press="handleNotification">
 				<layoutData>
 					<OverflowToolbarLayoutData priority="NeverOverflow"/>
 				</layoutData>
@@ -30,7 +30,7 @@
 			<tnt:ToolHeaderUtilitySeparator/>
 
 			<ToolbarSpacer width="1.125rem"/>
-			<Avatar src="" displaySize="XS" press=".onMyAccount" tooltip="Profile" id="button">
+			<Avatar src="" displaySize="XS" press="onMyAccount" tooltip="Profile" id="button">
 				<layoutData>
 					<OverflowToolbarLayoutData priority="NeverOverflow"/>
 				</layoutData>
