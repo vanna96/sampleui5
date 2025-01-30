@@ -14,7 +14,7 @@ sap.ui.define([
     return Controller.extend("my.app.controller.Item", {
 
         onInit: function () {
-            document.title = "Item";
+            document.title = "Item Master Data";
             this.oModel = new sap.ui.model.json.JSONModel({});  
 			this.getView().setModel(this.oModel, "model");
 
