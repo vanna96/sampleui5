@@ -23,8 +23,17 @@ sap.ui.define([], function () {
             return null;
         },
 
-        deleteCookie: function (name) {
-            document.cookie = name + "=; Max-Age=-99999999;";
+        deleteCookie: function (cookieName) {
+            const cookies = document.cookie.split(";");
+ 
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                 
+                if (cookie.indexOf(cookieName + "=") === 0) {
+                    // Delete the cookie by setting its expiration date to a past date
+                    document.cookie = cookieName + "=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+                }
+            }
         }
     };
 });

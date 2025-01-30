@@ -1,7 +1,10 @@
 sap.ui.define([
-    "sap/ui/core/UIComponent",
-    "sap/ui/core/ComponentSupport"
-], (UIComponent) => {
+    "sap/ui/core/UIComponent", 
+    "my/app/util/Cookie"
+], (
+    UIComponent,
+    Cookie
+) => {
     "use strict";
     return UIComponent.extend("my.app.Component", {
         metadata: {
@@ -27,6 +30,8 @@ sap.ui.define([
             } else if (sRouteName !== "login" && !this._checkAuthentication()) {
                 oRouter.navTo("login");
             }
+
+            this._setupAjaxErrorHandler();
         },
 
         _handleAuthentication: function (oRouter) {
@@ -39,5 +44,12 @@ sap.ui.define([
             const authCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith("B1SESSION="));
             return authCookie !== undefined;
         },
+
+        _setupAjaxErrorHandler: function (){
+            $(document).ajaxError(function (event, jqXHR){
+                Cookie.deleteCookie("B1SESSION");
+                if (jqXHR.status === 401) this.getRouter().navTo("login");
+            }.bind(this));
+        }
     });
 });

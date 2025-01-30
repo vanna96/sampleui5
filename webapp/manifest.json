@@ -46,7 +46,10 @@
 				"controlId": "app",
 				"controlAggregation": "pages",
 				"viewType": "XML",
-				"async": true
+				"async": true,
+				"bypassed": {
+					"target": "notFound"
+				}
 			},
 			"routes": [
 				{
@@ -63,6 +66,11 @@
 					"pattern": "category",
 					"name": "category",
 					"target": "category"
+				},
+				{
+					"pattern": "item",
+					"name": "item",
+					"target": "item"
 				}
 			],
 			"targets": {
@@ -83,8 +91,18 @@
 					"parent": "main",
 					"viewLevel": 1
 				},
+				"item": {
+					"viewName": "master_data.item.list",
+					"controlId": "appContainer", 
+					"parent": "main",
+					"viewLevel": 1
+				},
 				"login": {
 					"viewName": "Authentication.Login"
+				},
+				"notFound": { 
+					"viewName": "NotFound",
+					"transition": "show"
 				}
 			}
 		}

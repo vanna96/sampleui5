@@ -22,13 +22,22 @@
 			</Image>
 
 			<ToolbarSpacer />
-			<Button icon="sap-icon://bell" type="Transparent" tooltip="Notification" press="handleNotification">
+			<Button 
+				icon="sap-icon://bell"  
+				tooltip="Notification" 
+				press="handleNotification"  
+				type="Transparent">
 				<layoutData>
 					<OverflowToolbarLayoutData priority="NeverOverflow"/>
 				</layoutData>
+				<customData> 
+					<BadgeCustomData
+						key="badge"
+						value="3"  
+						visible="true"/>
+				</customData>
 			</Button>
 			<tnt:ToolHeaderUtilitySeparator/>
-
 			<ToolbarSpacer width="1.125rem"/>
 			<Avatar src="" displaySize="XS" press="onMyAccount" tooltip="Profile" id="button">
 				<layoutData>
@@ -36,7 +45,7 @@
 				</layoutData>
 			</Avatar>
 		</tnt:ToolHeader>
-        <SplitApp id="splitAppControl" >
+        <SplitApp id="splitAppControl" class="sapUiResponsiveContentPadding sapUiTinyMarginTop">
             <masterPages>
                 <Page id="masterPage" showHeader="false">
 					<tnt:NavigationList

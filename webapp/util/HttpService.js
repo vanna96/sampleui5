@@ -15,12 +15,12 @@ sap.ui.define([], function () {
                     data: isFormData ? oData : oData ? JSON.stringify(oData) : null, 
                     xhrFields: {
                         withCredentials: true
-                    },
+                    }, 
                     success: function(data) {
-                        resolve(data);  // Resolve the promise with the data
+                        resolve(data); 
                     },
-                    error: function (error) {
-                        reject(error);  // Reject the promise with the error
+                    error: function (error) { 
+                        reject(error);
                     }
                 });
             });
