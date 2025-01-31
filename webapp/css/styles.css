@@ -20,3 +20,20 @@ li[data-todo-item-completed="true"] span {
     border-radius: 4px; /* Optional: Add a border radius */
 }
 
+.sapMSlt {
+    height: 30px !important; /* Match the height of Input */
+    padding: 0 !important; /* Remove padding for consistency */
+    border-radius: 4px; /* Optional: Add a border radius */
+}
+
+.sapMInputBase {
+    height: 30px !important; /* Match the height */
+    padding: 0 !important; /* Ensure no extra padding */
+    border-radius: 4px; /* Optional: Add a border radius */
+}
+
+.customFooterBar {
+    /* width: 97%; */
+    margin: auto;
+    margin-bottom: 20px;
+  }

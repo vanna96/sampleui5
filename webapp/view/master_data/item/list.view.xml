@@ -6,10 +6,10 @@
     xmlns:u="sap.ui.unified"
     xmlns:mvc="sap.ui.core.mvc"
     controllerName="my.app.controller.Item">
-    
+
     <f:DynamicPage fitContent="true">
         <f:title>
-        
+
             <f:DynamicPageTitle>
                 <!-- <f:heading>
                     <m:Title text="Item" level="H1" />
@@ -29,14 +29,14 @@
                     <m:Button
                         text="Create New"
                         type="Emphasized"
-                        press="OnCreate" />
+                        press="onCreate" />
                 </f:actions>
 
             </f:DynamicPageTitle>
         </f:title>
         <f:content>
-            <table:Table 
-                busy="{model>/isLoading}"	
+            <table:Table
+                busy="{model>/isLoading}"
                 rows="{model>/data}"
                 selectionMode="None">
 
@@ -64,7 +64,7 @@
                             <m:Text text="{model>ItemCode}"
                                 wrapping="false" />
                         </table:template>
-                    </table:Column> 
+                    </table:Column>
                     <table:Column minWidth="120px">
                         <m:Label text="ItemName" />
                         <table:template>
@@ -81,13 +81,13 @@
                                 }"
                                 wrapping="false" />
                         </table:template>
-                    </table:Column> 
+                    </table:Column>
                     <table:Column minWidth="120px">
                         <m:Label text="Status" />
-                        <table:template>  
-                            <m:ObjectStatus text="Active" state="Success"/> 
+                        <table:template>
+                            <m:ObjectStatus text="Active" state="Success"/>
                         </table:template>
-                    </table:Column> 
+                    </table:Column>
                     <table:Column width="4rem">
                         <m:Label text="" />
                         <table:template>

@@ -8,10 +8,14 @@
 		"dependencies": {
 			"minUI5Version": "1.121.0",
 			"libs": {
-				"sap.ui.core": {},
 				"sap.m": {},
+				"sap.tnt": {},
 				"sap.f": {},
-				"sap.tnt": {}
+				"sap.ui.core": {},
+                "sap.ui.layout": {},
+				"sap.ui.comp": {},
+				"sap.uxap": {},
+				"sap.ui.table": {}
 			}
 		},
 		"rootView": {
@@ -71,6 +75,11 @@
 					"pattern": "item",
 					"name": "item",
 					"target": "item"
+				},
+                {
+					"pattern": "item/create",
+					"name": "item_create",
+					"target": "item_form"
 				}
 			],
 			"targets": {
@@ -78,32 +87,38 @@
 					"viewName": "Main",
 					"viewType": "XML",
 					"controlAggregation": "pages"
-				}, 
+				},
 				"dashboard": {
 					"viewName": "Dashboard",
-					"controlId": "appContainer", 
+					"controlId": "appContainer",
 					"parent": "main",
 					"viewLevel": 1
 				},
 				"category": {
 					"viewName": "master_data.category.list",
-					"controlId": "appContainer", 
+					"controlId": "appContainer",
 					"parent": "main",
 					"viewLevel": 1
 				},
 				"item": {
 					"viewName": "master_data.item.list",
-					"controlId": "appContainer", 
+					"controlId": "appContainer",
 					"parent": "main",
 					"viewLevel": 1
 				},
 				"login": {
 					"viewName": "Authentication.Login"
 				},
-				"notFound": { 
+				"notFound": {
 					"viewName": "NotFound",
 					"transition": "show"
-				}
+				},
+                "item_form":{
+                    "viewName": "master_data.item.form",
+					"controlId": "appContainer",
+					"parent": "main",
+					"viewLevel": 1
+                }
 			}
 		}
 	}
