@@ -46,12 +46,12 @@
                 </table:extension>
 
                 <table:columns>
-                    <!-- <table:Column minWidth="4rem">
+                    <table:Column width="3rem">
                         <m:Label text="No." />
                         <table:template>
                             <m:Text text="{= ${model>/data}.indexOf(${model>}) + 1}" />
                         </table:template>
-                    </table:Column> -->
+                    </table:Column>
 
                     <table:Column minWidth="120px">
                         <m:Label text="Name" />
