@@ -1,24 +1,25 @@
-name: Deploy
+name: Deploy SAPUI5 to Local PC
+
 on:
   push:
-    branches: [ main ]
+    branches:
+      - deploy  # Change this if needed
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
+      - name: Setup SSH Connection
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 192.168.1.199 >> ~/.ssh/known_hosts
 
-    - run: npm install
-    - run: npm run build
-
-    - name: GitHub Pages action
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: dist
+      - name: Deploy to Local PC
+        run: |
+          ssh lenovo@192.168.1.199 "cd C:/Users/ASUS/Desktop/sampleui5 && git pull && npm install && npm run build"
