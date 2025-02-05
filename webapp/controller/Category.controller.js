@@ -16,7 +16,7 @@ sap.ui.define([
             document.title = "Category"; 
 
             this.oRouter.getRoute("category").attachPatternMatched(this.onListing, this);
-            // this.oRouter.getRoute("category_create").attachPatternMatched(this.onCreate, this);
+            this.oRouter.getRoute("category_create").attachPatternMatched(this.onCreateForm, this);
         },
 
         onListing: async function () {
@@ -76,5 +76,46 @@ sap.ui.define([
             }
             this.oModel.setProperty("/isLoading", false);
         },
+
+        onPressCreate: function(){
+            this.oRouter.navTo("category_create");
+        },
+
+        onCreateForm: function(){
+            this.oModel.setData({
+                titleForm: "Create Category",
+                buttonSubmit: "Save",
+                status: 'true',
+                statusList: [
+                    {
+                        'name': "Active",
+                        'value': true,
+                    },
+                    {
+                        'name': "Inactive",
+                        'value': false,
+                    }
+                ]
+            });
+        }, 
+
+        handlerChange: function (oEvent){
+            const oSource = oEvent.getSource();
+            const pKey = oSource.getProperty('name');
+            let pValue = null; 
+
+            switch (pKey){ 
+                default: 
+                    if ( pKey == 'status') pValue = oSource.getSelectedKey();
+                    else pValue = oSource.getValue();  
+                    this.oModel.setProperty(`/${ pKey }`, pValue); 
+                    break;
+            }
+        },
+
+
+        handlerSave: function () {
+            
+        }
     });
 });

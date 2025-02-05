@@ -6,7 +6,7 @@
     xmlns:table="sap.ui.table"
     xmlns:u="sap.ui.unified"
     xmlns:core="sap.ui.core"
-    controllerName="my.app.controller.Item">
+    controllerName="my.app.controller.Category">
      <m:Page showNavButton="true" navButtonPress="onNavBack">
         <ObjectPageLayout
             id="ObjectPageLayout"
@@ -23,8 +23,6 @@
                     <snappedTitleOnMobile>
                         <m:Title text="{model>/titleForm}" />
                     </snappedTitleOnMobile>
-
-
                 </ObjectPageDynamicHeaderTitle>
             </headerTitle>
             <headerContent>
@@ -33,39 +31,16 @@
                         <m:VBox class="sapUiLargeMarginEnd">
                             <m:Title class="sapUiTinyMarginBottom" text="Status:"/>
                             <m:ObjectStatus
-                                text="Active"
-                                state="Success"
+                                text="{= ${model>/status} === 'true' ? 'Active' : 'Inactive' }"
+                                state="{= ${model>/status} === 'true' ? 'Success' : 'Error' }"
                                 class="sapMObjectStatusLarge" />
-                        </m:VBox>
-
-                        <!-- <m:VBox class="sapUiLargeMarginEnd">
-                            <m:Title class="sapUiTinyMarginBottom">
-                                <m:Label text="Total:" />
-                            </m:Title>
-                            <m:Text
-                                text="${
-                                    path: 'model>/totalDocument',
-                                    type: 'sap.ui.model.type.Float',
-                                    formatOptions: { decimals: 2 }}" />
-                        </m:VBox>
-                        <m:VBox class="sapUiLargeMarginEnd">
-                            <m:Title class="sapUiTinyMarginBottom">
-                                <m:Label text="Credit Limit:" />
-                            </m:Title>
-                            <m:Text
-                                text="${
-                                    path: 'model>/customer/CreditLimit',
-                                    type: 'sap.ui.model.type.Float',
-                                    formatOptions: { decimals: 2 }}" />
-                        </m:VBox> -->
+                        </m:VBox> 
                     </m:HBox>
-
                 </m:HeaderContainer>
-
             </headerContent>
 
             <sections>
-                <ObjectPageSection titleUppercase="false" title="my section">
+                <ObjectPageSection titleUppercase="false" title="">
                     <subSections>
                         <ObjectPageSubSection title="General" mode="Expanded" titleUppercase="false">
 
@@ -93,119 +68,22 @@
 
                                         <f:FormElement label="Code">
                                             <f:fields>
-                                                <m:Input name="code" required="true" value="{model>/code}"/>
+                                                <m:Input name="code" required="true" value="{model>/code}" valueState="{= ${model>/code} ? 'None' : 'Error' }" change="handlerChange" />
                                             </f:fields>
                                         </f:FormElement>
 
-                                         <f:FormElement label="Name">
+                                        <f:FormElement label="Name">
                                             <f:fields>
-                                                <m:Input name="name" required="true" value="{model>/name}"/>
+                                                <m:Input id="name" name="name" required="true" value="{model>/name}" valueState="{= ${model>/name} ? 'None' : 'Error' }" change="handlerChange" />
                                             </f:fields>
                                         </f:FormElement>
 
-                                         <f:FormElement label="Foreign Name">
+                                        <f:FormElement label="Foreign Name">
                                             <f:fields>
-                                                <m:Input name="foreign_name" value="{model>/foreign_name}"/>
+                                                <m:Input name="foreign_name" value="{model>/foreign_name}" change="handlerChange" />
                                             </f:fields>
                                         </f:FormElement>
 
-                                        <f:FormElement label="Barcode">
-                                            <f:fields>
-                                                <m:Input name="barcode" required="true" value="{model>/barcode}"/>
-                                            </f:fields>
-                                        </f:FormElement>
-
-                                        <!-- <f:FormElement label="Name">
-                                            <f:fields>
-                                                <m:Select
-                                                    name="ContactPersonCode"
-                                                    forceSelection="true"
-                                                    change="handlerChange"
-                                                    selectedKey="{model>/ContactPersonCode}"
-                                                    items="{model>/customer/ContactEmployees}">
-                                                    <core:Item key="{model>InternalCode}"
-                                                        text="{model>Name}" />
-                                                </m:Select>
-                                            </f:fields>
-                                        </f:FormElement>
-
-                                        <f:FormElement
-                                            label="Territory">
-                                            <f:fields>
-                                                <m:ComboBox
-                                                    name="Territory"
-                                                    selectedKey="{model>/Territory}"
-                                                    id="Territory"
-                                                    items="{
-                                                        path: 'model>/territories'
-                                                    }"
-                                                    change="handlerChange"
-                                                    loadItems="handleLoadTerritory"
-                                                >
-                                                    <core:ListItem
-                                                        key="{model>TerritoryID}"
-                                                        text="{model>Description}" />
-                                                </m:ComboBox>
-                                            </f:fields>
-                                        </f:FormElement>
-
-                                        <f:FormElement label="Sales Employee">
-                                            <f:fields>
-                                                <m:ComboBox
-                                                    name="SalesPersonCode"
-                                                    selectedKey="{model>/SalesPersonCode}"
-                                                    id="SalePerson"
-                                                    items="{
-                                                        path: 'model>/saleEmployees'
-                                                    }"
-                                                    change="handlerChange"
-                                                    loadItems="handleLoadSaleEmployee"
-                                                >
-                                                    <core:ListItem
-                                                        key="{model>SalesEmployeeCode}"
-                                                        text="{model>SalesEmployeeName}" />
-                                                </m:ComboBox>
-
-                                            </f:fields>
-                                        </f:FormElement>
-
-                                        <f:FormElement label="Owner">
-                                            <f:fields>
-                                                <m:ComboBox
-                                                    name="OwnerCode"
-                                                    selectedKey="{model>/OwnerCode}"
-                                                    id="Owner"
-                                                    items="{
-                                                        path: 'model>/Owners'
-                                                    }"
-                                                    change="handlerChange"
-                                                    loadItems="handleLoadOwner"
-                                                >
-                                                    <core:ListItem
-                                                        key="{model>EmployeeID}"
-                                                        text="{model>LastName}, {model>FirstName}" />
-                                                </m:ComboBox>
-                                            </f:fields>
-                                        </f:FormElement>
-
-                                        <f:FormElement label="Cost Center">
-                                            <f:fields>
-                                                <m:ComboBox
-                                                    name="U_cost_center"
-                                                    selectedKey="{model>/U_cost_center}"
-                                                    id="Costcenter"
-                                                    items="{
-                                                        path: 'model>/CostCenters'
-                                                    }"
-                                                    change="handlerChange"
-                                                    loadItems="handleLoadCostCenter"
-                                                >
-                                                    <core:ListItem
-                                                        key="{model>CostCenter}"
-                                                        text="{model>CostCenterName}" />
-                                                </m:ComboBox>
-                                            </f:fields>
-                                        </f:FormElement> -->
                                     </f:formElements>
                                 </f:FormContainer>
 
@@ -225,87 +103,7 @@
                                                         text="{model>name}" />
                                                 </m:Select>
                                             </f:fields>
-                                        </f:FormElement>
-
-                                        <f:FormElement label="Currency">
-                                            <f:fields>
-                                                <m:Select
-                                                    name="currency"
-                                                    selectedKey="{model>/currency}"
-                                                    forceSelection="false"
-                                                    change="handlerChange"
-                                                    items="{model>/currencyList}">
-                                                    <core:Item
-                                                        key="{model>value}"
-                                                        text="{model>name}" />
-                                                </m:Select>
-                                            </f:fields>
-                                        </f:FormElement>
-
-                                        <f:FormElement label="Item Type">
-                                            <f:fields>
-                                                <m:Select
-                                                    name="item_type"
-                                                    selectedKey="{model>/item_type}"
-                                                    forceSelection="false"
-                                                    change="handlerChange"
-                                                    items="{model>/itemType}">
-                                                    <core:Item
-                                                        key="{model>value}"
-                                                        text="{model>name}" />
-                                                </m:Select>
-                                            </f:fields>
-                                        </f:FormElement>
-
-                                        <f:FormElement label="UoM Group">
-                                            <f:fields>
-                                                <m:Select
-                                                    name="uom_group"
-                                                    selectedKey="{model>/uom_group}"
-                                                    forceSelection="false"
-                                                    change="handlerChange"
-                                                    items="{model>/uomGroupList}">
-                                                    <core:Item
-                                                        key="{model>value}"
-                                                        text="{model>name}" />
-                                                </m:Select>
-                                            </f:fields>
-                                        </f:FormElement>
-
-                                        <f:FormElement label="Price List">
-                                            <f:fields>
-                                                <m:Select
-                                                    name="price_list"
-                                                    selectedKey="{model>/price_list}"
-                                                    forceSelection="false"
-                                                    change="handlerChange"
-                                                    items="{model>/priceLists}">
-                                                    <core:Item
-                                                        key="{model>name}"
-                                                        text="{model>name}" />
-                                                </m:Select>
-                                            </f:fields>
-                                        </f:FormElement>
-
-                                        <f:FormElement label="">
-                                            <f:fields>
-                                                <m:HBox>
-                                                    <m:CheckBox text="Stock Item" selected="{model>/stockItem}" />
-                                                    <m:ToolbarSpacer width="1.125rem"/>
-                                                    <m:CheckBox text="Purchase Item" selected="{model>/purchaseItem}" />
-                                                </m:HBox>
-                                            </f:fields>
-                                        </f:FormElement>
-
-                                        <f:FormElement label="">
-                                            <f:fields>
-                                                <m:HBox>
-                                                    <m:CheckBox text="Sale Item" selected="{model>/saleItem}" />
-                                                    <m:ToolbarSpacer width="1.125rem"/>
-                                                    <m:CheckBox text="Free Item" selected="{model>/freeItem}" />
-                                                </m:HBox>
-                                            </f:fields>
-                                        </f:FormElement>
+                                        </f:FormElement> 
 
                                     </f:formElements>
                                 </f:FormContainer>
@@ -315,13 +113,15 @@
                     </subSections>
                 </ObjectPageSection>
 
-                <ObjectPageSection titleUppercase="false" title="Attachments">
+                <ObjectPageSection titleUppercase="false" title="Attachment">
                     <subSections>
-                        <ObjectPageSubSection title="Attachments" mode="Expanded"
+                        <ObjectPageSubSection title="Attachment" mode="Expanded"
                             titleUppercase="false">
                             <m:UploadCollection
                                 id="UploadCollection"
-                                multiple="true"
+                                maximumFilenameLength="55"
+                                maximumFileSize="10"
+                                multiple="false"
                                 change="onUploadChange"
                                 fileDeleted="onFileDeleted"
                                 filenameLengthExceed="onFilenameLengthExceed"

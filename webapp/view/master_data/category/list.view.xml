@@ -16,7 +16,7 @@
                     <m:Button
                         text="Create New"
                         type="Emphasized"
-                        press="onCreate" />
+                        press="onPressCreate" />
                 </f:actions>
 
             </f:DynamicPageTitle>
@@ -63,7 +63,9 @@
                     <table:Column minWidth="120px">
                         <m:Label text="Foreign Name" />
                         <table:template>
-                            <m:Link text="{model>foreign_name}" wrapping="false" />
+                            <!-- <m:Link text="{model>foreign_name}" wrapping="false" /> -->
+                            <m:Text text="{model>foreign_name}"
+                                wrapping="false" />
                         </table:template>
                     </table:Column>
                     <table:Column minWidth="120px">
@@ -74,14 +76,13 @@
                                 wrapping="false" />
                         </table:template>
                     </table:Column>
-                    <table:Column minWidth="120px">
+                    <table:Column width="100px">
                         <m:Label text="Status" />
                         <table:template>
                             <m:ObjectStatus text="Active" state="Success"/>
                         </table:template>
                     </table:Column>
-                    <table:Column width="4rem">
-                        <m:Label text="" />
+                    <table:Column width="4rem"> 
                         <table:template>
                             <m:FlexBox
                                 justifyContent="Center"

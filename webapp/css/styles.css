@@ -37,3 +37,12 @@ li[data-todo-item-completed="true"] span {
     margin: auto;
     margin-bottom: 20px;
   }
+
+
+.sapMBtn .sapMBadge.sapMBadgeTopRight .sapMBadgeIndicator{
+    top: 0px;
+}
+
+body, .sapMText, .sapMLabel, .sapMInputBase {
+    font-family: 'Siemreap', "Open Sans", serif !important;
+}
