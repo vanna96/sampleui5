@@ -132,6 +132,12 @@
                                 beforeUploadStarts="onBeforeUploadStarts"
                                 uploadTerminated="onUploadTerminated"
                                 items="{model>/attachments}">
+                                <m:toolbar>
+                                    <m:OverflowToolbar visible="false"> 
+                                        <m:ToolbarSpacer />
+                                        <m:UploadCollectionToolbarPlaceholder/>
+                                    </m:OverflowToolbar>
+                                </m:toolbar>
                                 <m:items>
                                     <m:UploadCollectionItem
                                         documentId="{model>documentId}"

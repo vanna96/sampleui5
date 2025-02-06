@@ -46,3 +46,12 @@ li[data-todo-item-completed="true"] span {
 body, .sapMText, .sapMLabel, .sapMInputBase {
     font-family: 'Siemreap', "Open Sans", serif !important;
 }
+
+#__xmlview1--UploadCollection-1-uploader-fu_button-BDI-content {
+    visibility: hidden;  /* Hide the original text */
+}
+
+#__xmlview1--UploadCollection-1-uploader-fu_button-BDI-content::after {
+    content: "Add Attachment";  /* Insert the new text */
+    visibility: visible;
+}

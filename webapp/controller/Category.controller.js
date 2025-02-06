@@ -1,19 +1,21 @@
-sap.ui.define([ 
+sap.ui.define([
     "my/app/controller/Base.controller",
     "my/app/repository/CategoryRepository",
-    "my/app/util/Pagination"
+    "my/app/util/Pagination",
+    "my/app/controller/Attachment.controller"
 ], function (
     BaseController,
     CategoryRepository,
-    Pagination
+    Pagination,
+    AttachmentController
 ) {
     "use strict";
 
-    return BaseController.extend("my.app.controller.Category", {
-
+    const CategoryController = BaseController.extend("my.app.controller.Category", {
+        
         onInit: function () {
             BaseController.prototype.onInit.call(this);
-            document.title = "Category"; 
+            document.title = "Category";
 
             this.oRouter.getRoute("category").attachPatternMatched(this.onListing, this);
             this.oRouter.getRoute("category_create").attachPatternMatched(this.onCreateForm, this);
@@ -63,13 +65,12 @@ sap.ui.define([
 
             try {
                 const data = await CategoryRepository.get(oParams);
-                const totalItems = data["odata.count"];
-                const totalPages = Pagination.getTotalPages(totalItems, pageSize);
+                
+                const totalItems = data["odata.count"]; 
                 this.oModel.setProperty("/data", data.value);
                 this.oModel.setProperty("/pagination/totalItems", totalItems);
-                this.oModel.setProperty("/pagination/totalPages", totalPages);
-                const paginationInfo = Pagination.getPaginationInfo(totalItems, pageSize, pageNumber);
-                this.oModel.setProperty("/pagination", paginationInfo);
+                this.oModel.setProperty("/pagination/totalPages", Pagination.getTotalPages(totalItems, pageSize)); 
+                this.oModel.setProperty("/pagination", Pagination.getPaginationInfo(totalItems, pageSize, pageNumber));
 
             } catch (error) {
                 console.error("Error loading data:", error);
@@ -77,11 +78,11 @@ sap.ui.define([
             this.oModel.setProperty("/isLoading", false);
         },
 
-        onPressCreate: function(){
+        onPressCreate: function () {
             this.oRouter.navTo("category_create");
         },
 
-        onCreateForm: function(){
+        onCreateForm: function () {
             this.oModel.setData({
                 titleForm: "Create Category",
                 buttonSubmit: "Save",
@@ -97,25 +98,41 @@ sap.ui.define([
                     }
                 ]
             });
-        }, 
-
-        handlerChange: function (oEvent){
-            const oSource = oEvent.getSource();
-            const pKey = oSource.getProperty('name');
-            let pValue = null; 
-
-            switch (pKey){ 
-                default: 
-                    if ( pKey == 'status') pValue = oSource.getSelectedKey();
-                    else pValue = oSource.getValue();  
-                    this.oModel.setProperty(`/${ pKey }`, pValue); 
-                    break;
-            }
         },
 
-
         handlerSave: function () {
-            
+            const data = this.oModel.getData(); 
+            const formData = new FormData();
+        
+            formData.append("code", data.code);
+            formData.append("foreign_name", data.foreign_name);
+            formData.append("name", data.name);
+            formData.append("status", data.status);
+        
+            // Append attachments
+            // if (Array.isArray(data.attachments)) {
+            //     data.attachments.forEach((attachment, index) => {
+            //         formData.append(`attachments[${index}][documentId]`, attachment.documentId);
+            //         formData.append(`attachments[${index}][FileName]`, attachment.FileName);
+            //         formData.append(`attachments[${index}][FileExtension]`, attachment.FileExtension);
+            //         formData.append(`attachments[${index}][AttachmentDate]`, attachment.AttachmentDate);
+            //         formData.append(`attachments[${index}][SourcePath]`, attachment.SourcePath);
+            //         formData.append(`attachments[${index}][mimeType]`, attachment.mimeType);
+            //     });
+            // }
+
+            if (Array.isArray(data.files)) {
+                data.files.forEach((file, index) => {
+                    formData.append(`files[${index}]`, file, file.name);
+                });
+            }
         }
+        
     });
+
+    if (AttachmentController) {
+        Object.assign(CategoryController.prototype, AttachmentController.prototype);
+    }
+
+    return CategoryController;
 });
